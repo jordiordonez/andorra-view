@@ -1,5 +1,7 @@
 # Andorra View
 
+**Live:** https://jordiordonez.github.io/andorra-view/
+
 **A live digital window into Andorra.** A browser-based 3D view of the Principality that combines official
 Andorran data with global open feeds: traffic incidents, road cameras, parking occupancy, weather stations
 and warnings, avalanche danger, air quality, energy, fires, earthquakes, aircraft and satellites. All of it
@@ -103,6 +105,7 @@ Costs: $0 up to roughly 10k monthly users. See [docs/COSTS.md](docs/COSTS.md).
 
 ## Documentation
 
+- [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md): **current state** — what is live, hidden, pending
 - [docs/RESEARCH.md](docs/RESEARCH.md): Phase 0 findings (God's Eye View analysis, Andorran and global sources, basemaps, hosting)
 - [docs/DATA_SOURCES.md](docs/DATA_SOURCES.md): inventory of every source found, tested and classified
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): design, data flow, resilience, security, AI readiness
