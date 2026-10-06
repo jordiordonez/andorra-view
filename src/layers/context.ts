@@ -314,13 +314,22 @@ export class BusLayer extends SnapshotLayer {
   }
 
   describe(e: GeoEntity): EntityDetails {
-    if (e.type === 'busLine') return { title: e.label, subtitle: 'Recorregut 2025', fields: [], badges: ['ESTÀTIC'], note: 'No hi ha cap font pública de posicions de bus en temps real (ni GTFS-RT).' }
+    const live = { label: 'Bus en temps real (Mou-te, FEDA)', url: 'https://moute.ad' }
+    if (e.type === 'busLine')
+      return {
+        title: e.label,
+        subtitle: 'Recorregut 2025',
+        fields: [],
+        badges: ['ESTÀTIC'],
+        links: [live, { label: 'Horaris (bus.ad)', url: 'https://bus.ad' }],
+        note: 'Les posicions en directe només són a l’app Mou-te (sense feed públic); aquí es mostra el recorregut estàtic.',
+      }
     return {
       title: e.label,
       subtitle: `Parada · línia ${String(e.properties.line ?? '').toUpperCase()}`,
       fields: [{ label: 'Codi parada', value: fmt.text(e.properties.code) }],
-      links: [{ label: 'Horaris (bus.ad)', url: 'https://bus.ad' }],
-      note: 'Parades i recorreguts estàtics. Sense posicions de vehicles en temps real.',
+      links: [live, { label: 'Horaris (bus.ad)', url: 'https://bus.ad' }],
+      note: 'Parades i recorreguts estàtics. Arribades en directe: app Mou-te (sense feed públic).',
     }
   }
 

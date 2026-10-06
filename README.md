@@ -112,7 +112,8 @@ Costs: $0 up to roughly 10k monthly users. See [docs/COSTS.md](docs/COSTS.md).
 
 ## Known limitations
 
-- **Buses:** no public GTFS, GTFS-RT or vehicle positions exist for Andorra. Only static 2025 lines and stops are shown.
+- **Buses:** live positions exist (FEDA's Mou-te app on HAFAS; Escaldes' EE Bus on Ride Pingo) but only behind keyed app backends,
+  with no public GTFS/GTFS-RT. Static 2025 lines and stops are shown, with a link to moute.ad. See docs/research/05.
 - **Parking:** live occupancy only exists for 13 Andorra la Vella car parks, and the source publishes no update time.
   Other car parks show capacity only.
 - **Traffic:** Mobilitat publishes incidents and cameras, not flow or speed. No congestion layer is shown, rather than a simulated one.
@@ -125,7 +126,7 @@ Costs: $0 up to roughly 10k monthly users. See [docs/COSTS.md](docs/COSTS.md).
   Positions between updates are dead-reckoned for at most 20 s, and this is labelled in the details.
 - **Unofficial sources:** Mobilitat, meteo.ad, aire.ad, FEDA, Comú d'Andorra la Vella and Govern SIG publish no reuse
   licence. Undocumented endpoints may change without notice. Each layer fails independently.
-- Tested in desktop Chrome, and in Chrome at iPhone size (390×844). Safari (desktop/iOS) still needs manual testing.
+- Tested in desktop Chrome, Chrome at iPhone size (390×844) and Safari on a real iPhone. Desktop Safari not yet tested.
 
 ## Licence
 
