@@ -1,0 +1,32 @@
+{
+ "source": "https://static.avalanche.report/eaws_bulletins/2026-01-15/2026-01-15.ratings.json",
+ "AD_subset": {
+  "AD-01": 3,
+  "AD-01:am": 3,
+  "AD-01:high": 3,
+  "AD-01:high:am": 3,
+  "AD-01:high:pm": 3,
+  "AD-01:low": 3,
+  "AD-01:low:am": 3,
+  "AD-01:low:pm": 3,
+  "AD-01:pm": 3,
+  "AD-02": 3,
+  "AD-02:am": 3,
+  "AD-02:high": 3,
+  "AD-02:high:am": 3,
+  "AD-02:high:pm": 3,
+  "AD-02:low": 3,
+  "AD-02:low:am": 3,
+  "AD-02:low:pm": 3,
+  "AD-02:pm": 3,
+  "AD-03": 3,
+  "AD-03:am": 3,
+  "AD-03:high": 3,
+  "AD-03:high:am": 3,
+  "AD-03:high:pm": 3,
+  "AD-03:low": 3,
+  "AD-03:low:am": 3,
+  "AD-03:low:pm": 3,
+  "AD-03:pm": 3
+ }
+}

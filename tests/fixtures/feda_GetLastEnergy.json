@@ -1,0 +1,66 @@
+
+[
+  {
+    "consum": 37.53,
+    "data": "2026-10-05T00:00:00Z",
+    "descripcio": "Total Consum Andorra",
+    "id": 10,
+    "lastEnergyBeanCsv": "05/10/2026;10;Total Consum Andorra;37,53;\r\n"
+  },
+  {
+    "consum": 25.22,
+    "data": "2026-10-05T00:00:00Z",
+    "descripcio": "Total Importació Espanya",
+    "id": 11,
+    "lastEnergyBeanCsv": "05/10/2026;11;Total Importació Espanya;25,22;\r\n"
+  },
+  {
+    "consum": 12.31,
+    "data": "2026-10-05T00:00:00Z",
+    "descripcio": "Total Importació França",
+    "id": 12,
+    "lastEnergyBeanCsv": "05/10/2026;12;Total Importació França;12,31;\r\n"
+  },
+  {
+    "consum": 0.0,
+    "data": "2026-10-05T00:00:00Z",
+    "descripcio": "Total Producció Andorra",
+    "id": 13,
+    "lastEnergyBeanCsv": "05/10/2026;13;Total Producció Andorra;0,0;\r\n"
+  },
+  {
+    "consum": 0.0,
+    "data": "2026-10-05T00:00:00Z",
+    "descripcio": "Total Exportació Espanya",
+    "id": 20,
+    "lastEnergyBeanCsv": "05/10/2026;20;Total Exportació Espanya;0,0;\r\n"
+  },
+  {
+    "consum": 0.0,
+    "data": "2026-10-05T00:00:00Z",
+    "descripcio": "Total Exportació França",
+    "id": 21,
+    "lastEnergyBeanCsv": "05/10/2026;21;Total Exportació França;0,0;\r\n"
+  },
+  {
+    "consum": 0.0,
+    "data": "2026-10-05T00:00:00Z",
+    "descripcio": "Producció Central Hidroelèctrica",
+    "id": 30,
+    "lastEnergyBeanCsv": "05/10/2026;30;Producció Central Hidroelèctrica;0,0;\r\n"
+  },
+  {
+    "consum": 0.0,
+    "data": "2026-10-05T00:00:00Z",
+    "descripcio": "Producció Forn Incinerador",
+    "id": 31,
+    "lastEnergyBeanCsv": "05/10/2026;31;Producció Forn Incinerador;0,0;\r\n"
+  },
+  {
+    "consum": 0.0,
+    "data": "2026-10-05T00:00:00Z",
+    "descripcio": "Producció Cogeneració Soldeu",
+    "id": 32,
+    "lastEnergyBeanCsv": "05/10/2026;32;Producció Cogeneració Soldeu;0,0;\r\n"
+  }
+]

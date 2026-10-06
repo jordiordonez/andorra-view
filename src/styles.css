@@ -1,0 +1,2 @@
+html, body, #app { margin: 0; height: 100%; background: #05070a; color: #e6edf3; font-family: system-ui, sans-serif; }
+#map { position: absolute; inset: 0; }

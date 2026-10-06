@@ -1,0 +1,107 @@
+{
+ "success": true,
+ "result": [
+  {
+   "id": 8,
+   "category_id": 5,
+   "language": null,
+   "title": "Carrer Prada Casadet, AD500 Andorra la Vella, Andorra",
+   "text": "<p>Punts de càrrega: 3</p>  ",
+   "lat": "42.50634179818125",
+   "lng": "1.5227007865905762",
+   "category": {
+    "id": 5,
+    "classification": "",
+    "language": "ca",
+    "title": "Punts de càrrega vehicles elèctrics",
+    "icon": "https://app.mobilitat.ad/Icons/electric.png",
+    "participacio": false
+   }
+  },
+  {
+   "id": 9,
+   "category_id": 5,
+   "language": null,
+   "title": "Carrer Pompeu Fabra, AD500 Andorra la Vella, Andorra",
+   "text": "<p>Punts de càrrega: 2</p>  ",
+   "lat": "42.50730277382483",
+   "lng": "1.5266650915145874",
+   "category": {
+    "id": 5,
+    "classification": "",
+    "language": "ca",
+    "title": "Punts de càrrega vehicles elèctrics",
+    "icon": "https://app.mobilitat.ad/Icons/electric.png",
+    "participacio": false
+   }
+  },
+  {
+   "id": 10,
+   "category_id": 5,
+   "language": null,
+   "title": "28 Avinguda Francesc Cairat, AD600 Sant Julià de Lòria, Andorra",
+   "text": "<p>Punts de càrrega: 1</p>  ",
+   "lat": "42.465245877578546",
+   "lng": "1.4901715112075635",
+   "category": {
+    "id": 5,
+    "classification": "",
+    "language": "ca",
+    "title": "Punts de càrrega vehicles elèctrics",
+    "icon": "https://app.mobilitat.ad/Icons/electric.png",
+    "participacio": false
+   }
+  },
+  {
+   "id": 11,
+   "category_id": 5,
+   "language": null,
+   "title": "Avinguda de Rocafort Parquing Prat Nou, AD600 Sant Julià de Lòria, Andorra",
+   "text": "<p>Punts de càrrega: 2</p>  ",
+   "lat": "42.468738433202155",
+   "lng": "1.4932179895134823",
+   "category": {
+    "id": 5,
+    "classification": "",
+    "language": "ca",
+    "title": "Punts de càrrega vehicles elèctrics",
+    "icon": "https://app.mobilitat.ad/Icons/electric.png",
+    "participacio": false
+   }
+  },
+  {
+   "id": 12,
+   "category_id": 5,
+   "language": null,
+   "title": "Carrer Mossén Lluís Pujol, 3, AD500 Santa Coloma, Andorra",
+   "text": "<p>Punts de càrrega: 2</p>  ",
+   "lat": "42.49707343534744",
+   "lng": "1.5010577594010783",
+   "category": {
+    "id": 5,
+    "classification": "",
+    "language": "ca",
+    "title": "Punts de càrrega vehicles elèctrics",
+    "icon": "https://app.mobilitat.ad/Icons/electric.png",
+    "participacio": false
+   }
+  },
+  {
+   "id": 13,
+   "category_id": 5,
+   "language": null,
+   "title": "Carrer Doctor Molinesplanta 4b, AD500 Andorra la Vella, Andorra",
+   "text": "<p>Punts de càrrega: 2</p>  ",
+   "lat": "42.508817703426416",
+   "lng": "1.5239384694905311",
+   "category": {
+    "id": 5,
+    "classification": "",
+    "language": "ca",
+    "title": "Punts de càrrega vehicles elèctrics",
+    "icon": "https://app.mobilitat.ad/Icons/electric.png",
+    "participacio": false
+   }
+  }
+ ]
+}

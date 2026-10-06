@@ -1,0 +1,32 @@
+{
+  "name": "andorra-view",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Andorra View — a near-real-time 3D view of Andorra built from verified public and open data.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "data:static": "node scripts/fetch-static.mjs"
+  },
+  "dependencies": {
+    "cesium": "^1.146.0",
+    "satellite.js": "^7.1.0"
+  },
+  "devDependencies": {
+    "@types/geojson": "^7946.0.16",
+    "@types/node": "^26.6.4",
+    "playwright-core": "^1.63.0",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.3",
+    "vite-plugin-static-copy": "^4.1.1",
+    "vitest": "^4.1.11",
+    "wrangler": "^4.147.0"
+  },
+  "optionalDependencies": {
+    "@rolldown/binding-darwin-arm64": "^1.2.12"
+  }
+}
