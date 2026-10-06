@@ -14,7 +14,7 @@ If the project ever becomes commercial (ads, sales, paid services, a company wit
 
 | Component | Licence | Obligation |
 |---|---|---|
-| Andorra View source code | To be chosen by the owner (no LICENSE file yet; all rights reserved until then) | — |
+| Andorra View source code | MIT (see `LICENSE`; covers code only, not data) | Keep the copyright notice |
 | CesiumJS 1.146 | Apache-2.0 | Keep NOTICE. Cesium's on-screen credit is shown automatically |
 | satellite.js 7 | MIT | Keep notice |
 | Vite, TypeScript, Vitest, Wrangler | MIT / Apache-2.0 | Dev tooling, not distributed |

@@ -126,6 +126,11 @@ Costs: $0 up to roughly 10k monthly users. See [docs/COSTS.md](docs/COSTS.md).
   licence. Undocumented endpoints may change without notice. Each layer fails independently.
 - Tested in desktop Chrome, and in Chrome at iPhone size (390×844). Safari (desktop/iOS) still needs manual testing.
 
+## Licence
+
+Code: [MIT](LICENSE). Data belongs to the respective sources and is not covered by the MIT licence. See
+[docs/LICENSES_AND_ATTRIBUTIONS.md](docs/LICENSES_AND_ATTRIBUTIONS.md).
+
 ## Credits
 
 Inspired by [God's Eye View](https://github.com/bilawalsidhu/gods-eye-view) by Bilawal Sidhu (MIT). No code
