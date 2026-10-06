@@ -17,7 +17,13 @@ async function openSkyToken(env: { OPENSKY_CLIENT_ID?: string; OPENSKY_CLIENT_SE
   return ((await res.json()) as { access_token?: string }).access_token
 }
 
-/** Aircraft around Andorra: adsb.lol (ODbL) first, OpenSky as fallback. */
+type Attempt = () => Promise<FeedResponse>
+
+/**
+ * Aircraft around Andorra: adsb.lol (ODbL) → OpenSky.
+ * Note (2026-10-06): from Cloudflare Workers egress, adsb.lol answers 429, OpenSky times out and adsb.fi answers 403
+ * (cloud IPs refused). adsb.fi was removed for that reason; see README "Known limitations".
+ */
 export const aircraftFeed: JsonFeed = {
   kind: 'json',
   id: 'aircraft',
@@ -26,34 +32,38 @@ export const aircraftFeed: JsonFeed = {
   staleSeconds: 60,
   async load({ env }): Promise<FeedResponse> {
     const fetchedAt = new Date().toISOString()
-    try {
-      const nm = Math.round(RADII_KM.airspace / NM)
-      const raw = await fetchJson<AdsbLolResponse>(
-        env,
-        `https://api.adsb.lol/v2/lat/${ANDORRA_CENTER.latitude}/lon/${ANDORRA_CENTER.longitude}/dist/${nm}`,
-        { timeoutMs: 6000, retries: 0 },
-      )
-      return {
-        source: 'adsb-lol',
-        fetchedAt,
-        sourceUpdatedAt: new Date(raw.now).toISOString(),
-        entities: normalizeAdsbLol(raw, AIRSPACE_BBOX),
-      }
-    } catch (primaryError) {
-      const b = AIRSPACE_BBOX
-      const token = await openSkyToken(env).catch(() => undefined)
-      const raw = await fetchJson<OpenSkyResponse>(
-        env,
-        `https://opensky-network.org/api/states/all?lamin=${b.south}&lomin=${b.west}&lamax=${b.north}&lomax=${b.east}`,
-        { timeoutMs: 8000, retries: 0, headers: token ? { Authorization: `Bearer ${token}` } : {} },
-      )
-      return {
-        source: 'opensky',
-        fetchedAt,
-        sourceUpdatedAt: new Date(raw.time * 1000).toISOString(),
-        entities: normalizeOpenSky(raw, AIRSPACE_BBOX),
-        warning: `adsb.lol unavailable (${primaryError instanceof Error ? primaryError.message : 'error'}); using OpenSky`,
+    const nm = Math.round(RADII_KM.airspace / NM)
+    const { latitude: lat, longitude: lon } = ANDORRA_CENTER
+    const readsb = (source: 'adsb-lol', url: string): Attempt => async () => {
+      const raw = await fetchJson<AdsbLolResponse>(env, url, { timeoutMs: 6000, retries: 0 })
+      return { source, fetchedAt, sourceUpdatedAt: new Date(raw.now).toISOString(), entities: normalizeAdsbLol(raw, AIRSPACE_BBOX, source) }
+    }
+    const attempts: Array<[string, Attempt]> = [
+      ['adsb.lol', readsb('adsb-lol', `https://api.adsb.lol/v2/lat/${lat}/lon/${lon}/dist/${nm}`)],
+      [
+        'OpenSky',
+        async () => {
+          const b = AIRSPACE_BBOX
+          const token = await openSkyToken(env).catch(() => undefined)
+          const raw = await fetchJson<OpenSkyResponse>(
+            env,
+            `https://opensky-network.org/api/states/all?lamin=${b.south}&lomin=${b.west}&lamax=${b.north}&lomax=${b.east}`,
+            { timeoutMs: 8000, retries: 0, headers: token ? { Authorization: `Bearer ${token}` } : {} },
+          )
+          return { source: 'opensky', fetchedAt, sourceUpdatedAt: new Date(raw.time * 1000).toISOString(), entities: normalizeOpenSky(raw, AIRSPACE_BBOX) }
+        },
+      ],
+    ]
+    const failures: string[] = []
+    for (const [name, attempt] of attempts) {
+      try {
+        const res = await attempt()
+        if (failures.length) res.warning = `Font principal no disponible (${failures.join('; ')}); dades de ${name}`
+        return res
+      } catch (err) {
+        failures.push(`${name}: ${err instanceof Error ? err.message : String(err)}`)
       }
     }
+    throw new Error(failures.join('; '))
   },
 }

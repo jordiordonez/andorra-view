@@ -17,6 +17,9 @@ import { UpstreamError } from './http'
 
 const feedsById = new Map<string, Feed>(FEEDS.map((f) => [f.id, f]))
 const inflight = new Map<string, Promise<Response>>()
+/** Negative cache: after an upstream failure (with nothing cached), don't retry that feed for a while. */
+const failedUntil = new Map<string, { until: number; message: string }>()
+const FAILURE_BACKOFF_MS = 60_000
 export const serverHealth = new HealthRegistry()
 
 const RATE_LIMIT_PER_MIN = 240
@@ -72,6 +75,10 @@ async function serveFeed(feed: Feed, key: string | undefined, url: URL, env: Env
     })
 
   if (cached && age < feed.ttlSeconds) return respond(cached.body, cached.contentType, cached.storedAt, 'HIT')
+  const recentFailure = failedUntil.get(cacheKey)
+  if (!cached && recentFailure && recentFailure.until > Date.now()) {
+    return json({ error: 'upstream_unavailable', feed: feed.id, message: recentFailure.message }, 502, { 'Cache-Control': 'public, max-age=30', 'Retry-After': '60' })
+  }
 
   const started = Date.now()
   try {
@@ -89,6 +96,7 @@ async function serveFeed(feed: Feed, key: string | undefined, url: URL, env: Env
       contentType = out.contentType
     }
     const storedAt = Date.now()
+    failedUntil.delete(cacheKey)
     await cache.put(cacheKey, { body, contentType, storedAt }, feed.ttlSeconds + feed.staleSeconds)
     return respond(body, contentType, storedAt, 'MISS')
   } catch (err) {
@@ -98,6 +106,7 @@ async function serveFeed(feed: Feed, key: string | undefined, url: URL, env: Env
       return json({ error: err.status === 404 ? 'not_found' : 'bad_request', message }, err.status)
     }
     serverHealth.failure(feed.id, message, Date.now() - started)
+    failedUntil.set(cacheKey, { until: Date.now() + FAILURE_BACKOFF_MS, message })
     if (cached && age < feed.ttlSeconds + feed.staleSeconds) {
       // Last-known-good copy, explicitly flagged so the UI never presents it as live.
       if (feed.kind === 'json') {

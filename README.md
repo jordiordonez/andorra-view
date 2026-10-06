@@ -117,6 +117,9 @@ Costs: $0 up to roughly 10k monthly users. See [docs/COSTS.md](docs/COSTS.md).
 - **Traffic:** Mobilitat publishes incidents and cameras, not flow or speed. No congestion layer is shown, rather than a simulated one.
 - **Avalanche danger and snowploughs** are seasonal (about December–May). Off-season the layer stays empty, with a note.
 - **Ski resorts:** piste and lift status is only published as HTML, with no open feed. Not integrated.
+- **Aircraft on the public deployment:** the free ADS-B APIs refuse requests from Cloudflare's servers (adsb.lol 429,
+  OpenSky timeout, adsb.fi 403, observed 2026-10-06). The aircraft layer works locally (`npm run dev`) and shows a clear
+  error online. Fix options: an adsb.lol API key, OpenSky credentials from a non-cloud host, or a small proxy on another network.
 - **Aircraft** at low altitude inside the valleys depend on volunteer ADS-B receivers.
   Positions between updates are dead-reckoned for at most 20 s, and this is labelled in the details.
 - **Unofficial sources:** Mobilitat, meteo.ad, aire.ad, FEDA, Comú d'Andorra la Vella and Govern SIG publish no reuse
