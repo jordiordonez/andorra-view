@@ -39,7 +39,7 @@ export function searchAll(manager: LayerManager, query: string, limit = 12): Sea
 }
 
 export function createSearch(manager: LayerManager, onPick: (r: SearchResult) => void) {
-  const input = h('input', { type: 'search', placeholder: 'Cerca: Pas de la Casa, CG-2, hospital, IB…', 'aria-label': 'Cerca', autocomplete: 'off', enterkeyhint: 'search' })
+  const input = h('input', { type: 'search', placeholder: 'Cerca: Pas de la Casa, CG-2, hospital…', 'aria-label': 'Cerca', autocomplete: 'off', enterkeyhint: 'search' })
   const list = h('div', { class: 'search-results panel hidden', role: 'listbox' })
   const root = h('div', { class: 'search' }, svgIcon('search'), input, list)
   let results: SearchResult[] = []

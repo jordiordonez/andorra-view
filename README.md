@@ -54,6 +54,7 @@ Copy `.env.example` to `.env`. Every variable is optional.
 | Variable | Where | Purpose |
 |---|---|---|
 | `VITE_API_BASE` | browser | URL of the API Worker when the frontend is hosted elsewhere (GitHub Pages) |
+| `VITE_HIDDEN_LAYERS` | browser | Comma-separated layer ids not shown in this build (public site: `aircraft`) |
 | `VITE_CESIUM_ION_TOKEN` | browser | Use Cesium World Terrain instead of the built-in composite terrain |
 | `VITE_GOOGLE_MAPS_API_KEY` | browser | Enables the "Fotorealista 3D" toggle (Google Photorealistic 3D Tiles; billed beyond 1,000 sessions/month) |
 | `FIRMS_MAP_KEY` | server | NASA FIRMS area API (otherwise the keyless 24 h Europe files are used) |
@@ -118,8 +119,8 @@ Costs: $0 up to roughly 10k monthly users. See [docs/COSTS.md](docs/COSTS.md).
 - **Avalanche danger and snowploughs** are seasonal (about December–May). Off-season the layer stays empty, with a note.
 - **Ski resorts:** piste and lift status is only published as HTML, with no open feed. Not integrated.
 - **Aircraft on the public deployment:** the free ADS-B APIs refuse requests from Cloudflare's servers (adsb.lol 429,
-  OpenSky timeout, adsb.fi 403, observed 2026-10-06). The aircraft layer works locally (`npm run dev`) and shows a clear
-  error online. Fix options: an adsb.lol API key, OpenSky credentials from a non-cloud host, or a small proxy on another network.
+  OpenSky timeout, adsb.fi 403, observed 2026-10-06). The aircraft layer works locally (`npm run dev`) and is hidden on
+  the public site with `VITE_HIDDEN_LAYERS=aircraft` (repository variable). Fix options: an adsb.lol API key, OpenSky credentials from a non-cloud host, or a small proxy on another network.
 - **Aircraft** at low altitude inside the valleys depend on volunteer ADS-B receivers.
   Positions between updates are dead-reckoned for at most 20 s, and this is labelled in the details.
 - **Unofficial sources:** Mobilitat, meteo.ad, aire.ad, FEDA, Comú d'Andorra la Vella and Govern SIG publish no reuse

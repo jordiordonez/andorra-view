@@ -12,8 +12,24 @@ import { WeatherAlertsLayer } from './weatherAlerts'
 import { WeatherStationsLayer } from './weatherStations'
 import { WebcamsLayer } from './webcams'
 
+/**
+ * Layers hidden in this build (comma-separated ids in VITE_HIDDEN_LAYERS). The code stays; the layer is just not
+ * registered, so it never appears in the panel, search, status or agent tools. Used on the public deployment for
+ * `aircraft`, whose upstream APIs refuse requests from Cloudflare (see README "Known limitations").
+ */
+export const HIDDEN_LAYERS = new Set(
+  String(import.meta.env.VITE_HIDDEN_LAYERS ?? '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean),
+)
+
 /** Every layer shown in the app, in panel order within each group. */
 export function createLayers(): Layer[] {
+  return allLayers().filter((l) => !HIDDEN_LAYERS.has(l.id))
+}
+
+function allLayers(): Layer[] {
   return [
     new TrafficIncidentsLayer(),
     new WebcamsLayer(),
