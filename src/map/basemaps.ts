@@ -69,6 +69,8 @@ export async function setImagery(viewer: Viewer, id: ImageryId) {
     const provider = await ArcGisMapServerImageryProvider.fromUrl(`${GOVERN}/Hosted/${service}/MapServer`, {
       enablePickFeatures: false,
     })
+    // The tile cache only covers Andorra: 404s around the border are expected; a listener stops Cesium logging them.
+    provider.errorEvent.addEventListener(() => {})
     // Govern tiles are filled with rgb(248,248,248) outside the border: key that colour out so Sentinel-2 shows through.
     layers.add(new ImageryLayer(provider, { rectangle: andorraRect(), colorToAlpha: Color.fromBytes(248, 248, 248), colorToAlphaThreshold: 0.004 }))
   } catch (err) {

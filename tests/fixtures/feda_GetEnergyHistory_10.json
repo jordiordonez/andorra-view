@@ -1,0 +1,59 @@
+
+[
+  {
+    "consum": 1259.35,
+    "data": "2026-09-28T00:00:00Z",
+    "descripcio": "Total Consum Andorra",
+    "id": 10,
+    "lastEnergyBeanCsv": "28/09/2026;10;Total Consum Andorra;1259,35;\r\n"
+  },
+  {
+    "consum": 1250.25,
+    "data": "2026-09-29T00:00:00Z",
+    "descripcio": "Total Consum Andorra",
+    "id": 10,
+    "lastEnergyBeanCsv": "29/09/2026;10;Total Consum Andorra;1250,25;\r\n"
+  },
+  {
+    "consum": 1247.62,
+    "data": "2026-09-30T00:00:00Z",
+    "descripcio": "Total Consum Andorra",
+    "id": 10,
+    "lastEnergyBeanCsv": "30/09/2026;10;Total Consum Andorra;1247,62;\r\n"
+  },
+  {
+    "consum": 1258.63,
+    "data": "2026-10-01T00:00:00Z",
+    "descripcio": "Total Consum Andorra",
+    "id": 10,
+    "lastEnergyBeanCsv": "01/10/2026;10;Total Consum Andorra;1258,63;\r\n"
+  },
+  {
+    "consum": 1250.49,
+    "data": "2026-10-02T00:00:00Z",
+    "descripcio": "Total Consum Andorra",
+    "id": 10,
+    "lastEnergyBeanCsv": "02/10/2026;10;Total Consum Andorra;1250,49;\r\n"
+  },
+  {
+    "consum": 1189.55,
+    "data": "2026-10-03T00:00:00Z",
+    "descripcio": "Total Consum Andorra",
+    "id": 10,
+    "lastEnergyBeanCsv": "03/10/2026;10;Total Consum Andorra;1189,55;\r\n"
+  },
+  {
+    "consum": 1164.15,
+    "data": "2026-10-04T00:00:00Z",
+    "descripcio": "Total Consum Andorra",
+    "id": 10,
+    "lastEnergyBeanCsv": "04/10/2026;10;Total Consum Andorra;1164,15;\r\n"
+  },
+  {
+    "consum": 37.53,
+    "data": "2026-10-05T00:00:00Z",
+    "descripcio": "Total Consum Andorra",
+    "id": 10,
+    "lastEnergyBeanCsv": "05/10/2026;10;Total Consum Andorra;37,53;\r\n"
+  }
+]

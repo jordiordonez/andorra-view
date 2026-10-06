@@ -1,0 +1,15 @@
+# Cloudflare Worker serving only the /api proxy. The static frontend is deployed to GitHub Pages
+# (or Cloudflare Pages); point VITE_API_BASE at this Worker's URL.
+name = "andorra-view-api"
+main = "server/worker.ts"
+compatibility_date = "2026-09-01"
+
+[vars]
+# Comma-separated origins allowed to call the API (CORS). Keep in sync with the Pages URL.
+ALLOWED_ORIGINS = "https://jordiordonez.github.io,http://localhost:5173,http://localhost:4173"
+CONTACT = "https://github.com/jordiordonez/andorra-view"
+
+# Secrets (set with `npx wrangler secret put NAME`, never committed):
+#   FIRMS_MAP_KEY          optional, NASA FIRMS area API
+#   OPENSKY_CLIENT_ID      optional, OpenSky OAuth2 client credentials
+#   OPENSKY_CLIENT_SECRET

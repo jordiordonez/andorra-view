@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "data:static": "node scripts/fetch-static.mjs"
+    "data:static": "node scripts/fetch-static.mjs",
+    "deploy:api": "wrangler deploy",
+    "dev:api": "wrangler dev"
   },
   "dependencies": {
     "cesium": "^1.146.0",

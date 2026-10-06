@@ -20,7 +20,10 @@ export default defineConfig({
       ],
     }),
   ],
+  // satellite.js 7 ships optional WASM workers that use top-level await (needs ES-module workers).
+  worker: { format: 'es' },
   build: {
+    target: 'es2022',
     chunkSizeWarningLimit: 6000,
   },
 })

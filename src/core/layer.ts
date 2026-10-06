@@ -1,6 +1,7 @@
 import type { Viewer } from 'cesium'
 import { CustomDataSource } from 'cesium'
 import { getSource, type DataSource } from '../config/dataSources'
+import type { EntityDetails } from './details'
 import { Emitter } from './emitter'
 import { health } from './health'
 import type { FeedResponse, GeoEntity } from './types'
@@ -76,8 +77,23 @@ export abstract class Layer {
   /** Render normalized entities into `this.dataSource`. */
   protected abstract render(entities: GeoEntity[]): void
 
-  /** Optional per-frame / per-second hook (e.g. satellite propagation). */
+  /** Optional per-second hook (e.g. satellite propagation, aircraft dead-reckoning). */
   tick?(now: Date): void
+
+  /** Detail panel content. Source, timestamps and licence notes are added by the panel itself. */
+  describe(entity: GeoEntity): EntityDetails {
+    return {
+      title: entity.label,
+      fields: Object.entries(entity.properties)
+        .filter(([, v]) => v !== undefined && v !== null && typeof v !== 'object')
+        .map(([k, v]) => ({ label: k, value: String(v) })),
+    }
+  }
+
+  /** Extra text indexed by search (label is always indexed). */
+  searchText(entity: GeoEntity): string {
+    return entity.label
+  }
 
   getEntities(): readonly GeoEntity[] {
     return this.entities

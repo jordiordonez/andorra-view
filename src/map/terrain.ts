@@ -23,6 +23,8 @@ import type { FeatureCollection, MultiPolygon, Polygon } from 'geojson'
 const TERRARIUM = 'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'
 const TERRARIUM_MAX_LEVEL = 14
 const GOVERN_MIN_LEVEL = 11
+/** Deepest level with data in the Govern elevation cache (its tileInfo lists more LODs than it serves). */
+const GOVERN_MAX_LEVEL = 16
 const SIZE = 65
 
 type Ring = number[][]
@@ -120,7 +122,7 @@ export class AndorraTerrainProvider {
   }
 
   private useGovern(x: number, y: number, level: number): boolean {
-    if (!this.govern || level < GOVERN_MIN_LEVEL) return false
+    if (!this.govern || level < GOVERN_MIN_LEVEL || level > GOVERN_MAX_LEVEL) return false
     const r = this.tilingScheme.tileXYToRectangle(x, y, level)
     const pts: Array<[number, number]> = [
       [r.west, r.south],
@@ -136,7 +138,13 @@ export class AndorraTerrainProvider {
     if (this.useGovern(x, y, level)) {
       const p = this.govern!.requestTileGeometry(x, y, level, request)
       if (!p) return undefined
-      return p.catch(() => this.terrarium(x, y, level) ?? Promise.reject(new Error('terrain tile unavailable')))
+      return p
+        .then((data) => {
+          // The ArcGIS provider advertises children below its last served LOD; tell Cesium to upsample instead.
+          if (level >= GOVERN_MAX_LEVEL) (data as unknown as { _childTileMask: number })._childTileMask = 0
+          return data
+        })
+        .catch(() => this.terrarium(x, y, level) ?? Promise.reject(new Error('terrain tile unavailable')))
     }
     return this.terrarium(x, y, level, request)
   }

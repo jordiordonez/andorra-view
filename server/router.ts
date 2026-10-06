@@ -1,8 +1,9 @@
 import type { CacheStore } from './cache'
 import type { Env } from './env'
 import type { Feed } from './feeds/types'
-import { FEEDS } from './feeds'
+import { FEEDS } from './feeds/index'
 import { HealthRegistry } from './health'
+import { UpstreamError } from './http'
 
 /**
  * Framework-free API router: (Request) → Response. Used by the Cloudflare Worker in production and
@@ -92,6 +93,10 @@ async function serveFeed(feed: Feed, key: string | undefined, url: URL, env: Env
     return respond(body, contentType, storedAt, 'MISS')
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err)
+    // Client errors (bad/unknown key) are not upstream failures: answer 4xx and leave health untouched.
+    if (err instanceof UpstreamError && err.status && err.status >= 400 && err.status < 500 && feed.kind === 'binary') {
+      return json({ error: err.status === 404 ? 'not_found' : 'bad_request', message }, err.status)
+    }
     serverHealth.failure(feed.id, message, Date.now() - started)
     if (cached && age < feed.ttlSeconds + feed.staleSeconds) {
       // Last-known-good copy, explicitly flagged so the UI never presents it as live.
