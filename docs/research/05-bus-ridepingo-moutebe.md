@@ -97,7 +97,7 @@ TRC does produce GTFS-RT for customers: there is a partnership with Swiftly for 
 ### 2.5 Recommendation (Ride Pingo)
 - **NOT USABLE** as a data source today.
 - **Static fallback (POSSIBLE):** hand-encode the 3 hourly comunal lines (Caldea departures, published times) and the Bus Unió PDF timetable as a small static schedule. Stops and shapes would have to be digitised (they are not in OSM or the Govern layer: **UNVERIFIED** for the Govern layer, whose 16 shapes are national lines).
-- **Best legitimate path:** ask the **Comú d'Escaldes-Engordany (servei de circulació / EE Bus)**, who own the contract and data, to ask TRC for a **public GTFS + GTFS-RT VehiclePositions** feed for the 3 fixed lines and Bus Unió. Contact TRC (`move@theroutingcompany.com`, the company's published business address) in parallel.
+- **Best legitimate path:** ask the **Comú d'Escaldes-Engordany (servei de circulació / EE Bus)**, who own the contract and data, to ask TRC for a **public GTFS + GTFS-RT VehiclePositions** feed for the 3 fixed lines and Bus Unió. Contact TRC (the contact address on theroutingcompany.com, the company's published business address) in parallel.
 
 ---
 
